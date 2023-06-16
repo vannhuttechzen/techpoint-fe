@@ -1,0 +1,143 @@
+/*
+**************************************************************
+This theme is the default shipping theme, it includes some
+decent defaults, but is separate from the calendar component
+to make it easier for users to implement their own themes w/o
+having to override as much.
+**************************************************************
+*/
+
+/* Header */
+
+.theme-default .cv-header,
+.theme-default .cv-header-day {
+	background-color: #FFFFFF;
+	font-weight: bold;
+	color: #165E75;
+}
+
+.theme-default .cv-header .periodLabel {
+	font-size: 1.2em;
+}
+
+.theme-default .cv-header button {
+	color: black;
+}
+.theme-default .cv-header button:hover {
+	background-color: #F1F3F4;
+	transition: 0.6s;
+}
+
+.theme-default .cv-header button:active {
+	background-color: #ccc;
+}
+.theme-default .cv-header button:disabled {
+	color: #ccc;
+	background-color: #f7f7f7;
+}
+
+/* Grid */
+
+.theme-default .cv-weeknumber {
+	background-color: white;
+	border-color: #64748b;
+	color: black;
+}
+
+.theme-default .cv-weeknumber span {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.theme-default .cv-day.past {
+	background-color: white;
+}
+
+.theme-default .cv-day.outsideOfMonth {
+	background-color: white;
+}
+
+.theme-default .cv-day.today {
+	/*background-color: pink;*/
+}
+
+.theme-default .cv-day.today .cv-day-number {
+	background-color: #1973E8;
+	border-radius: 50%;
+	padding: 5px 8px;
+	color: white;
+}
+.theme-default .cv-day[aria-selected="true"] {
+	background-color: #FFFAE0;
+}
+
+/* Events */
+
+.theme-default .cv-item {
+	border-color: #e0e0f0;
+	border-radius: 0.5em;
+	background-color: #F4511E;
+	text-overflow: ellipsis;
+	font-size: 12px;
+	color: white;
+	height: 100%;
+}
+
+.theme-default .cv-item.purple {
+	background-color: #f0e0ff;
+	border-color: #e7d7f7;
+}
+
+.theme-default .cv-item.orange {
+	background-color: #ffe7d0;
+	border-color: #f7e0c7;
+}
+
+.theme-default .cv-item.continued::before,
+.theme-default .cv-item.toBeContinued::after {
+	content: " \21e2 ";
+	color: white;
+}
+
+.theme-default .cv-item.toBeContinued {
+	border-right-style: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.theme-default .cv-item.isHovered.hasUrl {
+	text-decoration: underline;
+}
+
+.theme-default .cv-item.continued {
+	border-left-style: none;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.cv-item.span3,
+.cv-item.span4,
+.cv-item.span5,
+.cv-item.span6,
+.cv-item.span7 {
+	text-align: center;
+}
+
+/* Event Times */
+
+.theme-default .cv-item .startTime,
+.theme-default .cv-item .endTime {
+	color: white;
+}
+
+.theme-default .cv-item .endTime {
+	padding-right: 7px;
+}
+/* Drag and drop */
+
+.theme-default .cv-day.draghover {
+	box-shadow: inset 0 0 0.2em 0.2em yellow;
+}
