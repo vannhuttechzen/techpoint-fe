@@ -7,9 +7,11 @@
     </svg>
   </div>
   <div>
-    <div v-if="token" class="flex justify-end pt-4 pr-4">
+    <div v-if="token" class="flex justify-end pt-44 pr-4">
       <div class="right-align">
-        <SelfProfileCard @filter-gifts="updateMinValue"/>
+        <div class="absolute top-6 right-6 z-10">
+          <SelfProfileCard @filter-gifts="updateMinValue"/>
+        </div>
       </div>
     </div>
     <div class="flex" v-if="activeGroup">
@@ -21,7 +23,7 @@
                     :on-click-group-tab="clickGroupTab"
         />
       </div>
-      <div :class="{'w-3/4 p-14 -mt-28': token, 'w-3/4 p-14': !token}">
+      <div :class="{'w-3/4 p-14 pb-0 -mt-28': token, 'w-3/4 p-14': !token}">
         <div class="absolute flex justify-end -mt-2 right-0 pr-56">
           <input
               id="search"
@@ -32,12 +34,6 @@
           />
           <div class="absolute top-0 left-0 inline-flex items-center p-2 -mt-9 -ml-14">
             <img alt="" class="w-20 aspect-square" src="../../../assets/images/13.png">
-          </div>
-        </div>
-        <div class="bg-gray-200 h-16">
-          <div class="flex">
-            <img class="-mt-11 w-36 mr-12 ml-16 cursor-pointer transition-transform transform hover:scale-110"
-                 src="/src/assets/images/news.gif"/>
           </div>
         </div>
         <CriteriaPanel :active-group="activeGroup" :data="filteredItems"/>

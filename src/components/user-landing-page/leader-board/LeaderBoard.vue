@@ -34,6 +34,12 @@ export default {
   name: "LeaderBoard",
   components: {RankRow, OnTopAvatar},
   props: ["title", "data"],
+  mounted() {
+    document.body.classList.remove('login')
+    document.body.classList.remove('main')
+    document.body.classList.remove('page-home')
+    document.body.classList.add('background')
+  },
   computed: {
     isDataEmpty() {
       return this.data.length === 0

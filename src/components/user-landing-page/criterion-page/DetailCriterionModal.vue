@@ -55,7 +55,7 @@
                       class="w-60 text-lg mr-4 font-sans leading-6 font-medium text-orange-700"
                       for="criterion-point"
                   >
-                    Số điểm đổi quà
+                    Số điểm tương ứng
                   </label>
                   <input
                       id="criterion-point"

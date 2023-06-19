@@ -11,17 +11,17 @@
             data-action="zoom"
         />
         <div class="absolute top-0 right-0 flex flex-col items-end gap-2 p-3 mt-6">
-          <div class="bg-yellow-200 opacity-80 flex items-center justify-center w-32 -mr-16"
-               :class="{'bg-stone-400': gift.quantity < 1}">
+          <div class="opacity-80 flex items-center w-24 -mr-10"
+               :class="gift.quantity < 1 ? 'bg-stone-400' : 'bg-yellow-200'">
             <svg class="w-8 h-8 text-pink-400 fill-pink-200 mr-3" fill="" stroke="currentColor"
                  stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                   d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
                   stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <p class="text-lg text-orange-800">{{ gift.quantity }}</p>
+            <p class="text-lg text-orange-800">{{ gift.quantity >= 0 ? gift.quantity : 0 }}</p>
           </div>
-          <div class="bg-orange-500 opacity-80 flex items-center justify-center w-32 -mr-16"
+          <div class="bg-orange-500 opacity-80 flex items-center w-24 -mr-10"
                :class="{'bg-stone-400': gift.quantity < 1}">
             <svg class="w-8 h-8 fill-yellow-400 mr-3" fill="none" stroke="currentColor" stroke-width="1.5"
                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -31,9 +31,9 @@
             </svg>
             <p class="text-lg text-orange-800">{{ gift.point }}</p>
           </div>
-          <div class="bg-green-500 opacity-80 flex items-center justify-center w-32 -mr-16"
+          <div class="bg-green-500 opacity-80 flex items-center w-24 -mr-10"
                :class="{'bg-stone-400': gift.quantity < 1}">
-            <svg class="w-6 h-6 bg-red-600 fill-white mr-3" fill="none" stroke="currentColor" stroke-width="1.5"
+            <svg class="w-6 h-6 bg-red-600 fill-white mr-4" fill="none" stroke="currentColor" stroke-width="1.5"
                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
@@ -42,31 +42,7 @@
             </svg>
             <p class="text-lg text-orange-800">200</p>
           </div>
-          <!--                    <img-->
-          <!--                        :class="{'bg-slate-500 hover:bg-slate-500 cursor-not-allowed': gift.quantity <= 0}"-->
-          <!--                        :disabled="gift.quantity <= 0"-->
-          <!--                        @click="openModalExchange"-->
-          <!--                        src="/src/assets/images/traoqua.jpg"-->
-          <!--                        alt="đổi điểm Image"-->
-          <!--                        class="border-2 border-orange-700 rounded-md w-22 h-16 -mr-7 cursor-pointer transition-transform transform hover:scale-110"-->
-          <!--                    />-->
-          <!--                    <img-->
-          <!--                      v-if="token"-->
-          <!--                      @click="gift.quantity > 0 && openModalExchange()"-->
-          <!--                      :class="{'bg-slate-500 hover:bg-slate-500 cursor-not-allowed': gift.quantity <= 0}"-->
-          <!--                      src="/src/assets/images/traoqua.jpg"-->
-          <!--                      alt="đổi điểm Image"-->
-          <!--                      class="border-2 border-orange-700 rounded-md w-22 h-16 -mr-7 cursor-pointer transition-transform transform hover:scale-110"-->
-          <!--                    />-->
-          <!--                    <img-->
-          <!--                      v-else-->
-          <!--                      @click="$router.push('/login')"-->
-          <!--                      :class="{'bg-slate-500 hover:bg-slate-500 cursor-not-allowed': gift.quantity <= 0}"-->
-          <!--                      src="/src/assets/images/traoqua.jpg"-->
-          <!--                      alt="đổi điểm Image"-->
-          <!--                      class="border-2 border-orange-700 rounded-md w-22 h-16 -mr-7 cursor-pointer transition-transform transform hover:scale-110"-->
-          <!--                    />-->
-          <img
+          <img class="w-24"
               :class="{'bg-slate-500 hover:bg-slate-500 cursor-not-allowed': gift.quantity <= 0, 'border-2 border-orange-700 rounded-md w-22 h-16 -mr-7 cursor-pointer transition-transform transform hover:scale-110': true}"
               alt="đổi điểm Image"
               src="/src/assets/images/traoqua.jpg"
@@ -77,7 +53,7 @@
     </div>
     <div class="flex justify-center bg-white w-full rounded-xl">
       <div class="items-center justify-center">
-        <button class="text-lg mt-2 text-blue-800 test-base w-96 font-bold " @click="openModal">
+        <button class="text-lg my-1 text-yellow-950 w-96 font-bold " @click="openModal">
           {{ gift.name }}
         </button>
       </div>

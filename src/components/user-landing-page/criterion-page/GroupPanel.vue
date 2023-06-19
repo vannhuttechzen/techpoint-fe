@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center rounded-lg px-8">
-    <div class=" -mt-2 w-full justify-center items-center overflow-y-scroll scroll-view h-[50vh] pt-5">
+    <div class="mt-1 w-full justify-center items-center overflow-y-scroll scroll-view h-[70vh] pt-5">
       <CriteriaGroupTab
           v-for="group in groupList"
           :id="group.id"

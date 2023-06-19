@@ -43,6 +43,8 @@ export default {
           const foundElement = this.newArraySearch.findIndex(element => element === newValue.point)
           if (foundElement !== -1) {
             this.newArraySearch.splice(foundElement, 1)
+          }else {
+            this.newArraySearch.push(newValue.point)
           }
         } else {
           const found = this.newArraySearch.findIndex(element => element === newValue)
@@ -64,9 +66,6 @@ export default {
         this.newArraySearch = this.newArraySearch.filter(item => item !== index.point)
       }else {
         this.newArraySearch = this.newArraySearch.filter(item => item !== index)
-      }
-      if(typeof index == "object") {
-        this.newArraySearch.push(index.point)
       }
     }
   },

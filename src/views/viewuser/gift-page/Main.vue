@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'absolute -ml-4 flex justify-start px-8 py-4': token, 'absolute -ml-4 flex justify-start px-8 py-4 -mt-20': !token}">
+    <div :class="{'absolute -ml-4 flex justify-start px-8 py-4': token, 'absolute -ml-4 flex justify-start px-8 py-4 mt-3': !token}">
         <svg class="w-8 h-8 p-1 stroke-[4] cursor-pointer rounded-full ring-2 hover:scale-125 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"
              xmlns="http://www.w3.org/2000/svg"
              @click="this.$router.push('/')">
@@ -7,12 +7,14 @@
         </svg>
     </div>
     <div class="font-special">
-        <div v-if="token" class="flex justify-end pt-4 pr-4">
+        <div v-if="token" class="flex justify-end pt-44 pr-4">
             <div class="right-align">
-                <SelfProfileCard />
+                <div class="absolute top-4 right-6 z-10">
+                    <SelfProfileCard @filter-gifts="updateMinValue"/>
+                </div>
             </div>
         </div>
-        <div :class="{'flex h-full -mt-20': token, 'flex h-full mt-20': !token}">
+        <div :class="{'flex h-full -mt-20': token, 'flex h-full': !token}">
             <div class="w-1/4 pl-14 pr-14 border-r-2 border-dashed border-primary">
                 <ListLevel/>
             </div>
@@ -84,8 +86,5 @@ export default {
     margin: 0;
     box-sizing: border-box;
     background-color: #b2e7d3;
-}
-:root{
-    background-color: #b2e7d3
 }
 </style>

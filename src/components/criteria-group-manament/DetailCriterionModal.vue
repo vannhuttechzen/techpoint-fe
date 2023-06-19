@@ -1,5 +1,5 @@
 <template>
-    <Modal :show="isOpen" size="modal-xl" @hidden="closeModal">
+    <Modal :show="isOpen" size="modal-xl" @hidden="closeModal" class="font-special">
         <img
             alt=""
             class="absolute opacity-100 w-full h-full"
@@ -41,7 +41,7 @@
                             <div class="mt-4 mx-auto ml-52">
                                 <div class="flex items-end">
                                     <label
-                                        class="text-lg mr-11 w-48 font-sans leading-6 font-medium text-orange-700"
+                                        class="text-lg mr-11 w-48 leading-6 font-medium text-orange-700"
                                         for="criterion-name"
                                     >
                                         Tên tiêu chí
@@ -56,10 +56,10 @@
                                 </div>
                                 <div class="flex mt-4 items-end">
                                     <label
-                                        class="w-60 text-lg mr-4 font-sans leading-6 font-medium text-orange-700"
+                                        class="w-60 text-lg mr-4 leading-6 font-medium text-orange-700"
                                         for="criterion-point"
                                     >
-                                        Số điểm đổi quà
+                                        Số điểm tương ứng
                                     </label>
                                     <input
                                         id="criterion-point"
@@ -72,7 +72,7 @@
                                 <div class="mt-4 flex">
                                     <div class="mr-7">
                                         <label
-                                            class="text-lg font-sans leading-6 font-medium text-orange-700"
+                                            class="text-lg leading-6 font-medium text-orange-700"
                                             for="criterion-description"
                                         >
                                             Mô tả chi tiết
@@ -86,60 +86,50 @@
                                         ></textarea>
                                     </div>
                                     <div class="mt-3 mr-9">
-                                        <label class="relative" for="upload-img">
-                                            <div
-                                                :class="{'border-danger': errors.img || errors.size}"
-                                                class="border-2 border-dashed border-gray-400 aspect-square w-full rounded-lg flex flex-col items-center justify-center"
-                                            >
-                                                <div
-                                                    v-if="isValidImage && tmpImgUrl"
-                                                    class="p-3"
-                                                >
-                                                    <img
-                                                        ref="imgRef"
-                                                        :src="tmpImgUrl"
-                                                        alt=""
-                                                        class="w-64 h-52 object-full"
-                                                    />
-                                                </div>
-                                                <div v-else>
-                                                    <div class="text-center text-danger">
-                                                        Ảnh không hợp lệ
-                                                    </div>
-                                                    <div class="text-center text-danger">
-                                                        Hệ thống chỉ hỗ trợ PNG, JPG, JPEG, GIF!
+                                        <label class="relative">
+                                            <div :class="{'border-danger': errors.img || errors.size}"
+                                                 class="border-2 border-dashed border-primary aspect-square w-4/5 rounded-lg flex flex-col items-center">
+                                                <div class="p-4 w-full">
+                                                    <div class="relative h-full zoom-in ">
+                                                        <div v-if="checkDelete === 'update'" data-v-9f00ac50=""
+                                                             class="w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"
+                                                             @click="deleteImg">
+                                                            <svg data-v-9f00ac50="" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round" class="lucide w-4 h-4">
+                                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                            </svg>
+                                                        </div>
+                                                        <img ref="imgRef" :src="this.tmpImgUrl" alt="image-default"
+                                                             class="w-64 h-full rounded-lg overflow-hidden object-cover" style="height: 173px">
+
                                                     </div>
                                                 </div>
-                                                <Error
-                                                    :hidden="!(errors.img || errors.size)"
-                                                    :message="errors.img || errors.size"
-                                                />
-                                            </div>
-                                            <div class="absolute inset-0 flex items-center justify-center">
-                                                <button
-                                                    class="rounded-full bg-orange-800 text-light w-10 h-10 flex items-center justify-center opacity-25"
-                                                >
-                                                    <svg
-                                                        class="w-6 h-6"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.5"
-                                                        viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
+                                                <div class="mb-4 flex items-center justify-center">
+
+                                                    <button class="btn-upload-img relative">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24"
+                                                             fill="none" class="svg-icon">
+                                                            <g stroke-width="2" stroke-linecap="round" stroke="#fff" fill-rule="evenodd"
+                                                               clip-rule="evenodd">
+                                                                <path
+                                                                  d="m4 9c0-1.10457.89543-2 2-2h2l.44721-.89443c.33879-.67757 1.03131-1.10557 1.78889-1.10557h3.5278c.7576 0 1.4501.428 1.7889 1.10557l.4472.89443h2c1.1046 0 2 .89543 2 2v8c0 1.1046-.8954 2-2 2h-12c-1.10457 0-2-.8954-2-2z"></path>
+                                                                <path d="m15 13c0 1.6569-1.3431 3-3 3s-3-1.3431-3-3 1.3431-3 3-3 3 1.3431 3 3z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="lable">Chọn ảnh</span>
+                                                        <input
+                                                          ref="uploadImage"
+                                                          class="absolute opacity-0 w-full h-full rounded-2xl"
+                                                          type="file"
+                                                          @change="onChooseFile"
                                                         />
-                                                    </svg>
-                                                </button>
-                                                <input
-                                                    id="upload-img"
-                                                    class="absolute opacity-0"
-                                                    type="file"
-                                                    @change="onChooseFile"
-                                                />
+                                                    </button>
+                                                </div>
+                                                <div class="invalid-feedback font-sans font-medium text-center" v-for="(item, index) in errorImages" v-bind:key="index">{{ item }}</div>
+                                                <Error :hidden="!errors.img&&!errors.size"
+                                                       :message="errors.img || errors.size"/>
                                             </div>
                                         </label>
                                     </div>
@@ -182,6 +172,7 @@
 import Swal from "sweetalert2";
 import CriterionApi from "@/api/CriterionApi";
 import Error from "@/components/core/Error.vue";
+import AvatarDefault from "@/assets/images/avatar-default.png";
 
 export default {
     name: "DetailCriterionModal",
@@ -194,9 +185,12 @@ export default {
                 groupId: this.action === "create" ? this.activeGroup.id : null,
             },
             errors: {},
-            tmpImgUrl: this.initialCriterion && this.initialCriterion.img ? this.initialCriterion.img : "",
+            tmpImgUrl: AvatarDefault,
             isValidImage: true,
-            showError: false
+            showError: false,
+            errorImages: [],
+            avatarDefault: AvatarDefault,
+            checkDelete: this.action,
         };
     },
     props: ["isOpen", "onClose", "initialCriterion", "action", "activeGroup"],
@@ -213,10 +207,11 @@ export default {
                 this.showError = true;
                 return;
             }
+
             try {
                 const data = this.$h.convertJsonToFormData(this.criterion);
                 let res;
-
+                this.validateImage()
                 if (this.action === "update") {
                     res = await CriterionApi.updateCriterion(this.criterion.id, data);
                 } else if (this.action === "create") {
@@ -248,22 +243,18 @@ export default {
             }
         },
         onChooseFile(e) {
-            this.errors = { ...this.errors, size: "", img: "" };
-            const file = e.target.files[0];
-            if (this.$h.isAnImage(file.name)) {
-                this.criterion.img = file;
-                this.tmpImgUrl = URL.createObjectURL(file);
-                this.isValidImage = true;
-            } else {
-                this.isValidImage = false;
-            }
+            this.errors = {...this.errors, size: "", img: ""}
+            let files = e.target.files || e.dataTransfer.files
+            this.criterion.img = files[0]
+            this.tmpImgUrl = URL.createObjectURL(files[0])
+            this.checkDelete = "update"
         },
         closeModal() {
             this.onClose();
         },
         reset() {
             URL.revokeObjectURL(this.tmpImgUrl);
-            this.tmpImgUrl = "";
+            this.tmpImgUrl = this.action == "update" ? this.initialCriterion.img : this.avatarDefault;
             this.errors = {};
 
             if (this.action === "create") {
@@ -273,6 +264,29 @@ export default {
                 };
             } else if (this.action === "update"){
                 this.criterion = { ...this.initialCriterion };
+            }
+        },
+        deleteImg() {
+            this.checkDelete = "create"
+            this.errors = {...this.errors, size: "", img: ""}
+            this.criterion.img = this.avatarDefault
+            this.tmpImgUrl = this.avatarDefault
+        },
+        validateImage() {
+            let file = this.$refs.uploadImage.files[0]
+            let allowedTypes = ['image/jpeg', 'image/png', 'image/jpg']
+            this.errorImages = []
+            if (!file) {
+                this.errorImages.push('Vui lòng chọn hình ảnh.')
+                return
+            }
+            if (!allowedTypes.includes(file.type)) {
+                this.errorImages.push('Loại tệp không hợp lệ. Chỉ cho phép jpeg, png và jpg.')
+                return
+            }
+            if (file.size > 500000) {
+                this.errorImages.push('Kích thước tệp quá lớn. Kích thước tối đa là 500KB.')
+                return
             }
         },
     },
@@ -295,6 +309,10 @@ export default {
         activeGroup(val) {
             this.criterion.groupId = val.id;
         },
+        action(newValue, oldValue) {
+            this.errorImages = []
+            this.checkDelete = newValue
+        }
     }
 };
 </script>
@@ -305,7 +323,37 @@ textarea {
     line-height: 40px;
     resize: none;
 }
+.upload-img {
+    top: 80%;
+    left: 40%;
+    transform: translate(-50%)
+}
+.btn-upload-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 12px;
+    gap: 8px;
+    height: 40px;
+    width: 172px;
+    border: none;
+    background: #FF2849;
+    border-radius: 20px;
+    cursor: pointer
+}
+.btn-upload-img .lable {
+    line-height: 22px;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 1px
+}
+.btn-upload-img:hover {
+    background: #e52441
+}
 
+.btn-upload-img:hover .svg-icon {
+    animation: flickering 2s linear infinite
+}
 .v-text-field {
     border: none;
     border-bottom: 1px solid #7c2d12;
@@ -316,5 +364,54 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 textarea::-webkit-scrollbar-thumb {
     background: white;
+}
+@keyframes flickering {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    52% {
+        opacity: 1
+    }
+
+    54% {
+        opacity: 0
+    }
+
+    56% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: 1
+    }
+
+    92% {
+        opacity: 0
+    }
+
+    94% {
+        opacity: 1
+    }
+
+    96% {
+        opacity: 0
+    }
+
+    98% {
+        opacity: 1
+    }
+
+    99% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
 }
 </style>

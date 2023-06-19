@@ -63,7 +63,6 @@ const routes = [
     },
     {
         path: "/",
-        component: UserLayout,
         name: "point-user",
         children: [
             {

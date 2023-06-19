@@ -52,7 +52,7 @@
                         <label class="text-lg leading-6 font-medium text-orange-700"
                                for="gift-description">Mô tả chi tiết</label>
                         <textarea id="gift-description" v-model="gift.description"
-                                  class="custom-textarea border-none bg-transparent w-96 h-72 decoration-orange-800 focus:ring-orange-200 leading-tight overflow-y-scroll scroll-view"
+                                  class="custom-textarea bg-transparent w-96 border-gray-700 mt-2 h-72 decoration-orange-800 focus:ring-orange-200 leading-tight overflow-y-scroll scroll-view"
                                   required></textarea>
                       </div>
                     </div>
@@ -101,8 +101,6 @@
                           </button>
                         </div>
                         <div class="invalid-feedback font-sans font-medium text-center" v-for="(item, index) in errorImages" v-bind:key="index">{{ item }}</div>
-                        <Error :hidden="!errors.img&&!errors.size"
-                               :message="errors.img || errors.size"/>
                       </div>
                     </label>
 

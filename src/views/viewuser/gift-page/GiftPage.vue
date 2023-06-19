@@ -1,5 +1,5 @@
 <template>
-  <div class="-mt-10">
+  <div :class="{'-mt-10': token, 'mt-11': !token}">
     <div class="absolute flex justify-end -mt-2 right-0 pr-60">
       <input
           id="search"
@@ -33,12 +33,15 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import GiftBoard from "@/components/user-landing-page/gift-page/GiftBoard.vue";
+import {getToken} from "@/utils/localStorageUtils";
 
 export default {
   name: "GiftPage",
   components: {GiftBoard},
   data() {
     return {
+      checkLogin: false,
+      token: getToken(),
       searchTerm: "",
       searchPoint: [],
       flagSearch: 1,
